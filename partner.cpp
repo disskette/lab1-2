@@ -29,10 +29,10 @@ unsigned long copyPhone(const char* to_copy)
     char index = 0;
     char ch='0';
     unsigned long digit = 10000000000; //умножение на разряд для прибавления
-    while (counter < 11)
+    while (counter < 11 || index < strlen(to_copy))
     {
         ch = to_copy[index];
-        if (ch==' '||ch=='-') //Пропускаю лишние символы
+        if (ch==' '||ch=='-' || ch == '+' || ch == '('||ch == ')'||ch == 'x'||ch == '.') //Пропускаю лишние символы
         {
             index++;
             continue;
@@ -41,7 +41,6 @@ unsigned long copyPhone(const char* to_copy)
         {
             index++;
             ch = '8';
-            
         }
 
         phone += (ch-'0')*digit;
@@ -121,8 +120,8 @@ bool Partner::operator > (const Partner& other) const
     if (*this == other) return false; // Дальше сравнивать незачем
 
     // Как и описывала, сравниваю первое несовпадающее поле
-    if (strcmp(organisation, other.organisation)>0) return true; // Зависимость оставшихся полей неважна
-    if (strcmp(name, other.name) > 0) return true;
+    if (strcmp(organisation, other.organisation)!=0) return strcmp(organisation, other.organisation)>0; // Зависимость оставшихся полей неважна
+    if (strcmp(name, other.name) != 0) return strcmp(name, other.name)>0;
     if (phone >  other.phone) return true;
 
     // Если все проверки не пройдены, значит, существует хотя бы одно поле первого объекта, меньшее, чем у второго
