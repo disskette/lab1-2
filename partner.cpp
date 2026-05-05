@@ -23,13 +23,12 @@ unsigned long copyPhone(const char* to_copy)
     {
         return 0;
     }
-    short counter = 0;
     unsigned long phone = 0;
 
     char index = 0;
     char ch='0';
     unsigned long digit = 10000000000; //умножение на разряд для прибавления
-    while (counter < 11 || index < strlen(to_copy))
+    while (index < strlen(to_copy))
     {
         ch = to_copy[index];
         if (ch==' '||ch=='-' || ch == '+' || ch == '('||ch == ')'||ch == 'x'||ch == '.') //Пропускаю лишние символы
@@ -44,7 +43,6 @@ unsigned long copyPhone(const char* to_copy)
         }
 
         phone += (ch-'0')*digit;
-        counter+=1; // Всего должно быть 10 цифр
         digit/=10;
         index++;
     }
