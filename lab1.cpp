@@ -57,7 +57,6 @@ void shakerSort(T* a, long size)
 {
     if (size <= 0) return;
 
-    // Алгоритм шейкерной сортировки над 
     long j, k = size-1;
     long lb=1, ub = size-1; // bounds of unsorted part of the array
     T x;
