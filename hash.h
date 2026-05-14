@@ -16,6 +16,8 @@ class HashTable {
 private:
     HashNode** table; // массив указателей на начала цепочек
     int capacity; // размер таблицы (по умолчанию будет простое число, чтобы меньше коллизий было)
+    int collisions;   // счётчик коллизий
+    
 
     // Полиномиальный хэш из презентации:
     // h(S) = S[0] + S[1]*P + S[2]*P^2 + ...
@@ -38,7 +40,7 @@ private:
     }
 
 public:
-    HashTable(int cap = 100003) : capacity(cap) {
+    HashTable(int cap = 100003) : capacity(cap), collisions(0) {
         table = new HashNode*[capacity];
         for (int i = 0; i < capacity; i++)
             table[i] = nullptr;
@@ -61,6 +63,12 @@ public:
     void insert(Partner& p) {
         int index = hash(p.getOrg());
         HashNode* node = new HashNode(p);
+
+        if (table[index] != nullptr &&
+            strcmp(table[index]->data.getOrg(), p.getOrg()) != 0)
+        {
+            collisions++;
+        }
         // вставка в начало цепочки
         node->next = table[index];
         table[index] = node;
@@ -82,4 +90,7 @@ public:
 
         return count;
     }
+
+    int getCollisions() const { return collisions; }
 };
+
