@@ -255,13 +255,17 @@ int main(int argc, char* argv[]) //Все имена файлов csv с вхо�
             stdSec = duration.count();
 
             // Вывод отсортированного массива в файл
-            sprintf(sortedName, "./output/sortedArray_num1_%d.csv", i); //Получаю имя файла
-            writeCSV(sortedName, stdArr, size);
+            if (sortCheck(stdArr, shakerArr, quickArr, mergeArr, size) == true) // Сортировки совпали
+            {
+                sprintf(sortedName, "./output/sortedArray_num1_%d.csv", i); //Получаю имя файла
+                writeCSV(sortedName, stdArr, size);
 
-            // Вывод всех измерений:
-            std::cout << "Массив размера: "<< size <<std::endl;
-            std::cout << "Шейкер: " << shakerSec<< "мс;   " << "Быстрая: " << quickSec<< "мс" << std::endl; 
-            std::cout << "Слияние: " << mergeSec << "мс;  " << "std::sort: " << stdSec<< "мс" << "\n" << std::endl;
+                // Вывод всех измерений:
+                std::cout << "Массив размера: "<< size <<std::endl;
+                std::cout << "Шейкер: " << shakerSec<< "мс;   " << "Быстрая: " << quickSec<< "мс" << std::endl; 
+                std::cout << "Слияние: " << mergeSec << "мс;  " << "std::sort: " << stdSec<< "мс" << "\n" << std::endl;
+            }
+
 
             // Очистка массива
             memset(p1, 0, 100000);

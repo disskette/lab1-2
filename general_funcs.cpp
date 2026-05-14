@@ -87,3 +87,55 @@ int fillMas(const char* filename, Partner* p_mas)
     return -1; //Массив не записался
 }
 
+bool searchCheck(Partner multi[], Partner linear[], Partner binary[], Partner redblack[], Partner hash[], long size)
+{
+    for (int i = 0; i < size; i++) // Проверяю, сошлись ли поиски
+    {
+        if (multi[i] != binary[i])
+        {
+            std::cout << "При бинарном поиске возникла ошибка "<<std::endl;
+            return false;
+        }
+        if (multi[i] != redblack[i])
+        {
+            std::cout << "При redblack поиске возникла ошибка "<<std::endl;
+            return false;
+        } 
+        if (multi[i] != hash[i])
+        {
+            std::cout << "При hash поиске возникла ошибка "<<std::endl;
+            return false;
+        } 
+        if (linear[i] != multi[i])
+        {
+            std::cout << "При линейном поиске возникла ошибка "<<std::endl;
+            return false;
+        } 
+    }
+     
+    return true;
+}
+
+bool sortCheck(Partner std[], Partner shake[], Partner quick[], Partner merge[], long size)
+{
+        for (int i = 0; i < size; i++) // Проверяю, сошлись ли поиски
+    {
+        if (std[i] != shake[i])
+        {
+            std::cout << "При сортировке шейкером возникла ошибка "<<std::endl;
+            return false;
+        }
+        if (std[i] != quick[i])
+        {
+            std::cout << "При быстрой сортировке возникла ошибка "<<std::endl;
+            return false;
+        } 
+        if (std[i] != merge[i])
+        {
+            std::cout << "При сортировке слиянием возникла ошибка "<<std::endl;
+            return false;
+        } 
+    }
+     
+    return true;
+}
