@@ -15,7 +15,7 @@ struct HashNode {
 class HashTable {
 private:
     HashNode** table; // массив указателей на начала цепочек
-    int capacity; // размер таблицы (по умолчанию будет простое число, чтобы меньше коллизий было)
+    long capacity; // размер таблицы (по умолчанию будет простое число, чтобы меньше коллизий было)
     int collisions;   // счётчик коллизий
     
 
@@ -40,7 +40,7 @@ private:
     }
 
 public:
-    HashTable(int cap = 100003) : capacity(cap), collisions(0) {
+    HashTable(long cap = 1000000) : capacity(cap), collisions(0) {
         table = new HashNode*[capacity];
         for (int i = 0; i < capacity; i++)
             table[i] = nullptr;

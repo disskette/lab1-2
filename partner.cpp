@@ -11,7 +11,7 @@ const char* copyString(const char* to_copy)
         empty[0] = '\0';
         return empty;
     }
-    size_t len = strlen(to_copy);
+    int len = strlen(to_copy);
     char* string_copy = new char[len + 1];
     strcpy(string_copy, to_copy);
     return string_copy; // неявное преобразование char* -> const char* допустимо
